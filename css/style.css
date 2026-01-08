@@ -15,14 +15,28 @@
     box-sizing: border-box;
 }
 
+/* iOS Safari対応：htmlとbodyの高さを制御 */
+html {
+    width: 100%;
+    height: 100%;
+    height: 100dvh; /* 動的ビューポート高さ */
+    overflow: hidden;
+    position: fixed;
+    overscroll-behavior: none;
+}
+
 body {
     font-family: 'Arial', 'Helvetica', sans-serif;
     background-color: var(--color-black);
     color: var(--color-white);
     min-height: 100vh;
+    min-height: 100dvh; /* 動的ビューポート高さでiOS Safari対応 */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* タッチ操作の改善 */
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Login Screen */
@@ -133,7 +147,21 @@ body {
 body.app-page {
     display: block;
     padding: 0;
-    padding-bottom: 80px; /* Footer height */
+    padding-bottom: calc(80px + env(safe-area-inset-bottom)); /* Footer height + safe area */
+    /* iOS Safariのアドレスバー対策 */
+    min-height: 100vh;
+    min-height: 100dvh; /* 動的ビューポート高さ */
+    height: 100%;
+    height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
 }
 
 /* Quote Header */
@@ -177,6 +205,10 @@ body.app-page {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    /* iOS Safariでのスクロール対応 */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 /* Goals Display */
@@ -314,12 +346,18 @@ body.app-page {
     justify-content: space-around;
     padding: 10px 0;
     box-shadow: 0 -5px 20px var(--color-red-glow);
-    z-index: 999;
+    z-index: 9999;
     /* スマホでのタップ動作改善 */
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     -webkit-user-select: none;
+    /* iOS Safe Area対応 */
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    /* アドレスバー対策 */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
 }
 
 .nav-btn {
