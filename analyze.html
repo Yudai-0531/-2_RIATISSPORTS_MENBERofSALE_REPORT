@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE TEAM - ANALYZE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body class="app-page">
+    <!-- Header -->
+    <header class="analyze-header">
+        <h1 class="page-title">ANALYZE</h1>
+        <p class="page-subtitle">データで見る、成長の軌跡</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- 切り替えコントロール -->
+        <section class="control-section">
+            <div class="scope-toggle">
+                <button class="toggle-btn active" data-scope="your">YOUR</button>
+                <button class="toggle-btn" data-scope="team">TEAM</button>
+            </div>
+            <div class="period-toggle">
+                <button class="toggle-btn" data-period="daily">DAILY</button>
+                <button class="toggle-btn active" data-period="monthly">MONTHLY</button>
+            </div>
+        </section>
+
+        <!-- 売上分析エリア -->
+        <section class="analysis-section">
+            <h2 class="section-title">売上分析</h2>
+            
+            <!-- 数値サマリー -->
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <h3>目標</h3>
+                    <p class="summary-value" id="targetRevenue">¥0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>実績</h3>
+                    <p class="summary-value" id="actualRevenue">¥0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>達成率</h3>
+                    <p class="summary-value achievement" id="achievementRate">0%</p>
+                </div>
+            </div>
+
+            <!-- グラフ -->
+            <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </section>
+
+        <!-- KPIサマリー（月次のみ） -->
+        <section class="kpi-summary-section" id="kpiSummary">
+            <h2 class="section-title">KPIサマリー（当月累計）</h2>
+            <div class="kpi-cards">
+                <div class="kpi-card">
+                    <h4>オファー数</h4>
+                    <p class="kpi-value" id="kpiOffer">0</p>
+                    <span class="kpi-target" id="kpiOfferTarget"></span>
+                </div>
+                <div class="kpi-card">
+                    <h4>商談数</h4>
+                    <p class="kpi-value" id="kpiNegotiation">0</p>
+                    <span class="kpi-target" id="kpiNegotiationTarget"></span>
+                </div>
+                <div class="kpi-card">
+                    <h4>成約数</h4>
+                    <p class="kpi-value" id="kpiClosing">0</p>
+                    <span class="kpi-target" id="kpiClosingTarget"></span>
+                </div>
+                <div class="kpi-card">
+                    <h4>RIATIS視聴数</h4>
+                    <p class="kpi-value" id="kpiRiatis">0</p>
+                    <span class="kpi-target" id="kpiRiatisTarget"></span>
+                </div>
+                <div class="kpi-card">
+                    <h4>CRM操作時間</h4>
+                    <p class="kpi-value" id="kpiCrm">0分</p>
+                    <span class="kpi-target" id="kpiCrmTarget"></span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="footer-nav">
+        <button class="nav-btn" data-page="report">
+            <span class="nav-icon">📝</span>
+            <span class="nav-label">REPORT</span>
+        </button>
+        <button class="nav-btn active" data-page="analyze">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">ANALYZE</span>
+        </button>
+        <button class="nav-btn" id="logoutBtn">
+            <span class="nav-icon">🚪</span>
+            <span class="nav-label">LOGOUT</span>
+        </button>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/analyze.js"></script>
+</body>
+</html>
