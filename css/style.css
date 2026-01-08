@@ -129,6 +129,222 @@ body {
     color: var(--color-red);
 }
 
+/* App Page Layout */
+body.app-page {
+    display: block;
+    padding: 0;
+    padding-bottom: 80px; /* Footer height */
+}
+
+/* Quote Header */
+.quote-header {
+    background: var(--color-dark-grey);
+    padding: 30px 20px;
+    border-bottom: 2px solid var(--color-red);
+    box-shadow: 0 5px 20px var(--color-red-glow);
+    text-align: center;
+}
+
+.quote-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quote-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-white);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.quote-text-jp {
+    font-size: 0.95rem;
+    color: var(--color-grey);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.quote-author {
+    font-size: 0.9rem;
+    color: var(--color-red);
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--color-red-glow);
+}
+
+/* Main Content */
+.main-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Goals Display */
+.goals-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.goal-card {
+    background: var(--color-dark-grey);
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid var(--color-red);
+    text-align: center;
+    box-shadow: 0 0 15px var(--color-red-glow);
+}
+
+.goal-card h3 {
+    font-size: 0.85rem;
+    color: var(--color-red);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.goal-amount {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-white);
+    text-shadow: 0 0 10px var(--color-red-glow);
+}
+
+/* Report Form Section */
+.report-form-section {
+    background: var(--color-dark-grey);
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid var(--color-red);
+    box-shadow: 0 0 20px var(--color-red-glow);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: var(--color-red);
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px var(--color-red-glow);
+}
+
+.report-date {
+    color: var(--color-grey);
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.report-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.report-form .form-group {
+    position: relative;
+}
+
+.report-form .form-group input,
+.report-form .form-group textarea {
+    width: 100%;
+    padding: 15px;
+    background: var(--color-black);
+    border: 1px solid var(--color-red);
+    border-radius: 5px;
+    color: var(--color-white);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.report-form .form-group textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+.report-form .form-group input:focus,
+.report-form .form-group textarea:focus {
+    outline: none;
+    box-shadow: 0 0 15px var(--color-red-glow);
+}
+
+.target-hint {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-grey);
+    margin-top: 5px;
+}
+
+.btn-submit {
+    padding: 18px;
+    background: var(--color-red);
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+.btn-submit:hover:not(:disabled) {
+    background: var(--color-black);
+    border: 2px solid var(--color-red);
+    box-shadow: 0 0 25px var(--color-red-glow);
+    transform: translateY(-2px);
+}
+
+.btn-submit:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Footer Navigation */
+.footer-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-dark-grey);
+    border-top: 2px solid var(--color-red);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -5px 20px var(--color-red-glow);
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-grey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn.active,
+.nav-btn:hover {
+    color: var(--color-red);
+    text-shadow: 0 0 10px var(--color-red-glow);
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+}
+
+.nav-label {
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
 /* Responsive */
 @media (max-width: 480px) {
     .login-container {
@@ -137,5 +353,33 @@ body {
     
     .app-title {
         font-size: 2.5rem;
+    }
+    
+    .goals-display {
+        grid-template-columns: 1fr;
+    }
+    
+    .goal-amount {
+        font-size: 1.5rem;
+    }
+    
+    .quote-text {
+        font-size: 1rem;
+    }
+    
+    .report-form-section {
+        padding: 20px;
+    }
+    
+    .nav-btn {
+        padding: 10px;
+    }
+    
+    .nav-icon {
+        font-size: 1.3rem;
+    }
+    
+    .nav-label {
+        font-size: 0.7rem;
     }
 }

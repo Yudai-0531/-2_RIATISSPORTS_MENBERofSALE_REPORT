@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE TEAM - REPORT</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="app-page">
+    <!-- Header: モチベーション名言 -->
+    <header class="quote-header">
+        <div class="quote-container">
+            <p class="quote-text" id="quoteText">Loading...</p>
+            <p class="quote-text-jp" id="quoteTextJp"></p>
+            <p class="quote-author" id="quoteAuthor"></p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- 目標表示エリア -->
+        <section class="goals-display">
+            <div class="goal-card team-goal">
+                <h3>TEAM TARGET</h3>
+                <p class="goal-amount" id="teamGoal">¥0</p>
+            </div>
+            <div class="goal-card individual-goal">
+                <h3>YOUR TARGET</h3>
+                <p class="goal-amount" id="yourGoal">¥0</p>
+            </div>
+        </section>
+
+        <!-- 日報入力フォーム -->
+        <section class="report-form-section">
+            <h2 class="section-title">本日の積み上げ</h2>
+            <p class="report-date" id="reportDate"></p>
+            
+            <form id="reportForm" class="report-form">
+                <!-- 売上金額 -->
+                <div class="form-group">
+                    <label for="revenueAmount">売上金額（円）</label>
+                    <input type="number" id="revenueAmount" name="revenueAmount" min="0" step="1" placeholder="0">
+                </div>
+
+                <!-- KPI入力 -->
+                <div class="form-group">
+                    <label for="offerCount">オファー数</label>
+                    <input type="number" id="offerCount" name="offerCount" min="0" placeholder="0">
+                    <span class="target-hint" id="offerTarget"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="negotiationCount">商談数</label>
+                    <input type="number" id="negotiationCount" name="negotiationCount" min="0" placeholder="0">
+                    <span class="target-hint" id="negotiationTarget"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="closingCount">成約数</label>
+                    <input type="number" id="closingCount" name="closingCount" min="0" placeholder="0">
+                    <span class="target-hint" id="closingTarget"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="riatisViewCount">RIATIS視聴数</label>
+                    <input type="number" id="riatisViewCount" name="riatisViewCount" min="0" placeholder="0">
+                    <span class="target-hint" id="riatisViewTarget"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="crmTime">CRM操作時間（分）</label>
+                    <input type="number" id="crmTime" name="crmTime" min="0" placeholder="0">
+                    <span class="target-hint" id="crmTimeTarget"></span>
+                </div>
+
+                <!-- 明日のネクストアクション -->
+                <div class="form-group">
+                    <label for="nextAction">明日のネクストアクション</label>
+                    <textarea id="nextAction" name="nextAction" rows="4" placeholder="明日取り組むことを入力してください"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">保存する</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="footer-nav">
+        <button class="nav-btn active" data-page="report">
+            <span class="nav-icon">📝</span>
+            <span class="nav-label">REPORT</span>
+        </button>
+        <button class="nav-btn" data-page="analyze">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">ANALYZE</span>
+        </button>
+        <button class="nav-btn" id="logoutBtn">
+            <span class="nav-icon">🚪</span>
+            <span class="nav-label">LOGOUT</span>
+        </button>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/report.js"></script>
+</body>
+</html>

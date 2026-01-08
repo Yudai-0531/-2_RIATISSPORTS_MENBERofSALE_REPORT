@@ -1,5 +1,4 @@
 // ONE TEAM - Authentication Logic
-// Supabase integration will be added here
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
@@ -8,15 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const userId = document.getElementById('userId').value;
+            const userId = document.getElementById('userId').value.trim();
             const password = document.getElementById('password').value;
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
             
-            // TODO: Supabase authentication
-            console.log('Login attempt:', { userId, password });
+            // ボタンを無効化
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'ログイン中...';
             
-            // Temporary: Redirect to report page
-            alert('ログイン機能は準備中です\nSupabase設定後に有効化されます');
-            // window.location.href = 'report.html';
+            try {
+                const user = await SessionManager.login(userId, password);
+                
+                // ロール判定してリダイレクト
+                if (user.role === 'admin') {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'report.html';
+                }
+            } catch (error) {
+                alert(error.message || 'ログインに失敗しました');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'LOGIN';
+            }
         });
     }
 });
