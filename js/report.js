@@ -127,13 +127,26 @@ async function saveReport(userId, date) {
         try {
             const currentUser = SessionManager.getCurrentUser();
             if (typeof EmailNotificationService !== 'undefined') {
+                console.log('📧 メール通知を送信中...', {
+                    user: currentUser.name,
+                    date: reportData.report_date
+                });
+                
                 // Edge Function経由で送信（推奨）
-                await EmailNotificationService.sendReportNotificationViaEdgeFunction(reportData, currentUser);
-                console.log('✅ メール通知を送信しました');
+                const result = await EmailNotificationService.sendReportNotificationViaEdgeFunction(reportData, currentUser);
+                
+                if (result.success) {
+                    console.log('✅ メール通知を送信しました:', result);
+                } else {
+                    console.warn('⚠️ メール通知の送信に失敗:', result);
+                }
+            } else {
+                console.warn('⚠️ EmailNotificationService が読み込まれていません');
             }
         } catch (emailError) {
             // メール送信失敗しても日報保存は成功として扱う
-            console.warn('⚠️ メール通知の送信に失敗しましたが、日報は保存されました:', emailError);
+            console.error('⚠️ メール通知の送信エラー:', emailError);
+            console.error('エラー詳細:', emailError.message || emailError);
         }
         
         alert('✅ 日報を保存しました！');
