@@ -1,0 +1,141 @@
+/* ONE TEAM - Neon/Cyberpunk Style */
+
+:root {
+    --color-black: #000000;
+    --color-dark-grey: #1a1a1a;
+    --color-red: #ff0040;
+    --color-red-glow: rgba(255, 0, 64, 0.6);
+    --color-white: #ffffff;
+    --color-grey: #666666;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login Screen */
+.login-container {
+    width: 90%;
+    max-width: 400px;
+    padding: 40px 30px;
+    background: var(--color-dark-grey);
+    border: 2px solid var(--color-red);
+    border-radius: 10px;
+    box-shadow: 0 0 30px var(--color-red-glow);
+}
+
+.app-title {
+    font-size: 3rem;
+    text-align: center;
+    color: var(--color-red);
+    text-shadow: 0 0 20px var(--color-red-glow);
+    margin-bottom: 10px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.app-subtitle {
+    text-align: center;
+    color: var(--color-grey);
+    margin-bottom: 40px;
+    font-size: 0.9rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--color-red);
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.form-group input {
+    padding: 15px;
+    background: var(--color-black);
+    border: 1px solid var(--color-red);
+    border-radius: 5px;
+    color: var(--color-white);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--color-red);
+    box-shadow: 0 0 15px var(--color-red-glow);
+}
+
+.btn-login {
+    padding: 18px;
+    background: var(--color-red);
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+.btn-login:hover {
+    background: var(--color-black);
+    border: 2px solid var(--color-red);
+    box-shadow: 0 0 25px var(--color-red-glow);
+    transform: translateY(-2px);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+.admin-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.admin-link a {
+    color: var(--color-grey);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.admin-link a:hover {
+    color: var(--color-red);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+    
+    .app-title {
+        font-size: 2.5rem;
+    }
+}

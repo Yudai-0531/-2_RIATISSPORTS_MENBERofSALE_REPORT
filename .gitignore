@@ -1,0 +1,33 @@
+# Environment Variables
+.env
+.env.local
+.env.production
+
+# Supabase Credentials
+supabase-config.js
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+
+# Build Output
+dist/
+build/
+.vercel/
+
+# Temporary Files
+*.tmp
+*.temp
