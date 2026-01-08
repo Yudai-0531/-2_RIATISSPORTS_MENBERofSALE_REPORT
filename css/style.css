@@ -314,6 +314,12 @@ body.app-page {
     justify-content: space-around;
     padding: 10px 0;
     box-shadow: 0 -5px 20px var(--color-red-glow);
+    z-index: 999;
+    /* スマホでのタップ動作改善 */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .nav-btn {
@@ -327,6 +333,12 @@ body.app-page {
     padding: 10px 20px;
     cursor: pointer;
     transition: all 0.3s ease;
+    /* スマホでのタップ動作改善 */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .nav-btn.active,
