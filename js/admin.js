@@ -406,9 +406,9 @@ async function saveIndividualGoal() {
         year: parseInt(document.getElementById('goalYear').value),
         month: parseInt(document.getElementById('goalMonth').value),
         revenue_target: parseFloat(document.getElementById('revenueTarget').value || 0),
-        daily_offer_target: parseInt(document.getElementById('dailyOfferTarget').value || 0),
-        daily_negotiation_target: parseInt(document.getElementById('dailyNegotiationTarget').value || 0),
-        daily_closing_target: parseInt(document.getElementById('dailyClosingTarget').value || 0),
+        daily_offer_target: 0, // 日次では目標設定しない（月次目標を参照）
+        daily_negotiation_target: 0, // 日次では目標設定しない（月次目標を参照）
+        daily_closing_target: 0, // 日次では目標設定しない（月次目標を参照）
         daily_riatis_view_target: parseInt(document.getElementById('dailyRiatisTarget').value || 0),
         daily_crm_time_target: parseInt(document.getElementById('dailyCrmTarget').value || 0),
         monthly_offer_target: parseInt(document.getElementById('monthlyOfferTarget').value || 0),
