@@ -4,14 +4,14 @@ const SUPABASE_URL = 'https://ujoyyhhgvdlfvmlnnpwz.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVqb3l5aGhndmRsZnZtbG5ucHd6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc4NTkwODEsImV4cCI6MjA4MzQzNTA4MX0.E8qb3ei8tscPoWZHNC-IB7XJSQ4brf3swWa1G5YK4xA';
 
 // Supabase クライアントの初期化
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // セッション管理
 class SessionManager {
     static async login(userId, password) {
         try {
             // usersテーブルからユーザー情報を取得
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('users')
                 .select('*')
                 .eq('user_id', userId)
@@ -116,7 +116,7 @@ class DataService {
 
     // チーム目標を取得
     static async getTeamGoal(year, month) {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('team_goals')
             .select('*')
             .eq('year', year)
@@ -149,7 +149,7 @@ class DataService {
 
     // 日報を保存
     static async saveDailyReport(reportData) {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('daily_reports')
             .upsert(reportData, { onConflict: 'user_id,report_date' })
             .select();
@@ -204,7 +204,7 @@ class DataService {
         const endDate = new Date(year, month, 0);
         const endDateStr = `${year}-${String(month).padStart(2, '0')}-${endDate.getDate()}`;
 
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('daily_reports')
             .select('*')
             .gte('report_date', startDate)
