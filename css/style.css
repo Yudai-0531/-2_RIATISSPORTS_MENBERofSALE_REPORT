@@ -581,3 +581,355 @@ body.app-page {
         font-size: 1.5rem;
     }
 }
+
+/* Admin Page Styles */
+.admin-page {
+    background: var(--color-black);
+}
+
+.admin-header {
+    background: var(--color-dark-grey);
+    padding: 30px 20px;
+    border-bottom: 2px solid var(--color-red);
+    box-shadow: 0 5px 20px var(--color-red-glow);
+    text-align: center;
+}
+
+/* Admin Tabs */
+.admin-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--color-grey);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--color-grey);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    color: var(--color-red);
+    border-bottom-color: var(--color-red);
+    text-shadow: 0 0 10px var(--color-red-glow);
+}
+
+.tab-btn:hover:not(.active) {
+    color: var(--color-white);
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Section Header */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-add {
+    padding: 12px 20px;
+    background: var(--color-red);
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-add:hover {
+    box-shadow: 0 0 20px var(--color-red-glow);
+    transform: translateY(-2px);
+}
+
+/* User List */
+.user-list,
+.quote-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.user-card,
+.quote-card {
+    background: var(--color-dark-grey);
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid var(--color-red);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info h4,
+.quote-info {
+    margin: 0 0 5px 0;
+    color: var(--color-white);
+}
+
+.user-info p {
+    margin: 5px 0;
+    color: var(--color-grey);
+    font-size: 0.9rem;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.role-badge.admin {
+    background: var(--color-red);
+    color: var(--color-white);
+}
+
+.role-badge.sales_rep {
+    background: var(--color-grey);
+    color: var(--color-white);
+}
+
+.user-actions,
+.quote-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background: var(--color-grey);
+    color: var(--color-white);
+}
+
+.btn-edit:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+}
+
+.btn-delete {
+    background: transparent;
+    border: 2px solid var(--color-red);
+    color: var(--color-red);
+}
+
+.btn-delete:hover {
+    background: var(--color-red);
+    color: var(--color-white);
+}
+
+/* Quote Card */
+.quote-day {
+    display: inline-block;
+    padding: 5px 10px;
+    background: var(--color-red);
+    color: var(--color-white);
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.quote-text {
+    font-style: italic;
+    color: var(--color-white);
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.quote-text-jp {
+    color: var(--color-grey);
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.quote-author {
+    color: var(--color-red);
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Goal Forms */
+.goal-form-section {
+    background: var(--color-dark-grey);
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid var(--color-red);
+    margin-bottom: 25px;
+}
+
+.subsection-title {
+    color: var(--color-red);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.goal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.form-subtitle {
+    color: var(--color-white);
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--color-dark-grey);
+    border: 2px solid var(--color-red);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 0 30px var(--color-red-glow);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid var(--color-red);
+}
+
+.modal-header h3 {
+    color: var(--color-red);
+    margin: 0;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: var(--color-white);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--color-red);
+}
+
+.modal-form {
+    padding: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    padding: 12px 25px;
+    background: var(--color-grey);
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+}
+
+.empty-message {
+    text-align: center;
+    color: var(--color-grey);
+    padding: 40px;
+    font-size: 1.1rem;
+}
+
+/* Responsive for Admin */
+@media (max-width: 768px) {
+    .admin-tabs {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        border-bottom: none;
+        border-left: 3px solid transparent;
+    }
+    
+    .tab-btn.active {
+        border-left-color: var(--color-red);
+        border-bottom-color: transparent;
+    }
+    
+    .user-card,
+    .quote-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .user-actions,
+    .quote-actions {
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+    .btn-edit,
+    .btn-delete {
+        flex: 1;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

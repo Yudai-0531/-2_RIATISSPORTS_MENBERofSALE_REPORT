@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE TEAM - ADMIN</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="app-page admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <h1 class="page-title">ADMIN PANEL</h1>
+        <p class="page-subtitle">システム管理</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- タブナビゲーション -->
+        <nav class="admin-tabs">
+            <button class="tab-btn active" data-tab="users">ユーザー管理</button>
+            <button class="tab-btn" data-tab="goals">目標設定</button>
+            <button class="tab-btn" data-tab="quotes">名言管理</button>
+        </nav>
+
+        <!-- ユーザー管理タブ -->
+        <section id="tab-users" class="tab-content active">
+            <div class="section-header">
+                <h2 class="section-title">ユーザー管理</h2>
+                <button class="btn-add" id="btnAddUser">+ 新規ユーザー</button>
+            </div>
+
+            <div class="user-list" id="userList">
+                <!-- ユーザーリストが動的に表示される -->
+            </div>
+        </section>
+
+        <!-- 目標設定タブ -->
+        <section id="tab-goals" class="tab-content">
+            <h2 class="section-title">目標設定</h2>
+            
+            <!-- チーム目標 -->
+            <div class="goal-form-section">
+                <h3 class="subsection-title">チーム月次目標</h3>
+                <form id="teamGoalForm" class="goal-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>年</label>
+                            <input type="number" id="teamYear" value="2026" min="2020" max="2030">
+                        </div>
+                        <div class="form-group">
+                            <label>月</label>
+                            <input type="number" id="teamMonth" value="1" min="1" max="12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>売上目標（円）</label>
+                        <input type="number" id="teamRevenueTarget" placeholder="10000000" step="10000">
+                    </div>
+                    <button type="submit" class="btn-save">保存</button>
+                </form>
+            </div>
+
+            <!-- 個人目標 -->
+            <div class="goal-form-section">
+                <h3 class="subsection-title">個人月次目標</h3>
+                <form id="individualGoalForm" class="goal-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>ユーザー</label>
+                            <select id="goalUserId">
+                                <option value="">選択してください</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>年</label>
+                            <input type="number" id="goalYear" value="2026" min="2020" max="2030">
+                        </div>
+                        <div class="form-group">
+                            <label>月</label>
+                            <input type="number" id="goalMonth" value="1" min="1" max="12">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>売上目標（円）</label>
+                        <input type="number" id="revenueTarget" placeholder="3000000" step="10000">
+                    </div>
+
+                    <h4 class="form-subtitle">日次KPI目標</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>オファー数</label>
+                            <input type="number" id="dailyOfferTarget" placeholder="5" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>商談数</label>
+                            <input type="number" id="dailyNegotiationTarget" placeholder="3" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>成約数</label>
+                            <input type="number" id="dailyClosingTarget" placeholder="1" min="0">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>RIATIS視聴数</label>
+                            <input type="number" id="dailyRiatisTarget" placeholder="5" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>CRM操作時間（分）</label>
+                            <input type="number" id="dailyCrmTarget" placeholder="60" min="0">
+                        </div>
+                    </div>
+
+                    <h4 class="form-subtitle">月次KPI目標</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>オファー数</label>
+                            <input type="number" id="monthlyOfferTarget" placeholder="150" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>商談数</label>
+                            <input type="number" id="monthlyNegotiationTarget" placeholder="90" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>成約数</label>
+                            <input type="number" id="monthlyClosingTarget" placeholder="30" min="0">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>RIATIS視聴数</label>
+                            <input type="number" id="monthlyRiatisTarget" placeholder="150" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>CRM操作時間（分）</label>
+                            <input type="number" id="monthlyCrmTarget" placeholder="1800" min="0">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-save">保存</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 名言管理タブ -->
+        <section id="tab-quotes" class="tab-content">
+            <div class="section-header">
+                <h2 class="section-title">名言管理</h2>
+                <button class="btn-add" id="btnAddQuote">+ 新規名言</button>
+            </div>
+
+            <div class="quote-list" id="quoteList">
+                <!-- 名言リストが動的に表示される -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ユーザー追加/編集モーダル -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="userModalTitle">新規ユーザー</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="userForm" class="modal-form">
+                <input type="hidden" id="editUserId">
+                <div class="form-group">
+                    <label>ユーザーID *</label>
+                    <input type="text" id="userId" required>
+                </div>
+                <div class="form-group">
+                    <label>パスワード *</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label>名前 *</label>
+                    <input type="text" id="userName" required>
+                </div>
+                <div class="form-group">
+                    <label>ロール</label>
+                    <select id="userRole">
+                        <option value="sales_rep">営業メンバー</option>
+                        <option value="admin">管理者</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel">キャンセル</button>
+                    <button type="submit" class="btn-save">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 名言追加/編集モーダル -->
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="quoteModalTitle">新規名言</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="quoteForm" class="modal-form">
+                <input type="hidden" id="editQuoteId">
+                <div class="form-group">
+                    <label>日付（1-365）*</label>
+                    <input type="number" id="dayOfYear" min="1" max="365" required>
+                </div>
+                <div class="form-group">
+                    <label>著者 *</label>
+                    <input type="text" id="quoteAuthor" required>
+                </div>
+                <div class="form-group">
+                    <label>英語 *</label>
+                    <textarea id="quoteContentEn" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>日本語 *</label>
+                    <textarea id="quoteContentJp" rows="3" required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel">キャンセル</button>
+                    <button type="submit" class="btn-save">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Navigation -->
+    <footer class="footer-nav">
+        <button class="nav-btn" id="backToReportBtn">
+            <span class="nav-icon">📝</span>
+            <span class="nav-label">REPORT</span>
+        </button>
+        <button class="nav-btn active">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">ADMIN</span>
+        </button>
+        <button class="nav-btn" id="logoutBtn">
+            <span class="nav-icon">🚪</span>
+            <span class="nav-label">LOGOUT</span>
+        </button>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
