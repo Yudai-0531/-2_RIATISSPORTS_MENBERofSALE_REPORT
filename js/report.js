@@ -123,6 +123,19 @@ async function saveReport(userId, date) {
 
         await DataService.saveDailyReport(reportData);
         
+        // メール通知を送信（非同期・エラーが出ても保存処理は成功扱い）
+        try {
+            const currentUser = SessionManager.getCurrentUser();
+            if (typeof EmailNotificationService !== 'undefined') {
+                // Edge Function経由で送信（推奨）
+                await EmailNotificationService.sendReportNotificationViaEdgeFunction(reportData, currentUser);
+                console.log('✅ メール通知を送信しました');
+            }
+        } catch (emailError) {
+            // メール送信失敗しても日報保存は成功として扱う
+            console.warn('⚠️ メール通知の送信に失敗しましたが、日報は保存されました:', emailError);
+        }
+        
         alert('✅ 日報を保存しました！');
         submitBtn.textContent = '保存する';
         submitBtn.disabled = false;
