@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 初期データ読み込み
     await loadUsers();
     await loadUserOptionsForGoals();
+    await loadTeamGoal(); // チーム目標の初期読み込み
 
     // タブ切り替え
     setupTabs();
@@ -332,6 +333,41 @@ function setupForms() {
         e.preventDefault();
         await saveQuote();
     });
+
+    // ユーザー選択時に既存のKPI設定を読み込む
+    document.getElementById('goalUserId').addEventListener('change', async (e) => {
+        const userId = e.target.value;
+        if (userId) {
+            await loadExistingGoalForUser(userId);
+        } else {
+            // ユーザー未選択時はフォームをクリア
+            clearIndividualGoalForm();
+        }
+    });
+
+    // 年月変更時にも既存のKPI設定を読み込む
+    document.getElementById('goalYear').addEventListener('change', async () => {
+        const userId = document.getElementById('goalUserId').value;
+        if (userId) {
+            await loadExistingGoalForUser(userId);
+        }
+    });
+
+    document.getElementById('goalMonth').addEventListener('change', async () => {
+        const userId = document.getElementById('goalUserId').value;
+        if (userId) {
+            await loadExistingGoalForUser(userId);
+        }
+    });
+
+    // チーム目標の年月変更時にも既存データを読み込む
+    document.getElementById('teamYear').addEventListener('change', async () => {
+        await loadTeamGoal();
+    });
+
+    document.getElementById('teamMonth').addEventListener('change', async () => {
+        await loadTeamGoal();
+    });
 }
 
 // ユーザー保存
@@ -371,6 +407,34 @@ async function saveUser() {
     }
 }
 
+// チーム目標を読み込む
+async function loadTeamGoal() {
+    const year = parseInt(document.getElementById('teamYear').value);
+    const month = parseInt(document.getElementById('teamMonth').value);
+
+    try {
+        const { data, error } = await supabaseClient
+            .from('team_goals')
+            .select('*')
+            .eq('year', year)
+            .eq('month', month)
+            .maybeSingle();
+
+        if (error) throw error;
+
+        if (data) {
+            // 既存データをフォームに設定
+            document.getElementById('teamRevenueTarget').value = data.revenue_target || '';
+        } else {
+            // データが存在しない場合はフォームをクリア
+            document.getElementById('teamRevenueTarget').value = '';
+        }
+    } catch (error) {
+        console.error('Error loading team goal:', error);
+        document.getElementById('teamRevenueTarget').value = '';
+    }
+}
+
 // チーム目標保存
 async function saveTeamGoal() {
     const goalData = {
@@ -391,6 +455,55 @@ async function saveTeamGoal() {
         console.error('Error saving team goal:', error);
         alert('チーム目標の保存に失敗しました');
     }
+}
+
+// 既存の個人目標を読み込む
+async function loadExistingGoalForUser(userId) {
+    const year = parseInt(document.getElementById('goalYear').value);
+    const month = parseInt(document.getElementById('goalMonth').value);
+
+    try {
+        const { data, error } = await supabaseClient
+            .from('individual_goals')
+            .select('*')
+            .eq('user_id', userId)
+            .eq('year', year)
+            .eq('month', month)
+            .maybeSingle();
+
+        if (error) throw error;
+
+        if (data) {
+            // 既存データをフォームに設定
+            document.getElementById('revenueTarget').value = data.revenue_target || '';
+            document.getElementById('dailyRiatisTarget').value = data.daily_riatis_view_target || '';
+            document.getElementById('dailyCrmTarget').value = data.daily_crm_time_target || '';
+            document.getElementById('monthlyOfferTarget').value = data.monthly_offer_target || '';
+            document.getElementById('monthlyNegotiationTarget').value = data.monthly_negotiation_target || '';
+            document.getElementById('monthlyClosingTarget').value = data.monthly_closing_target || '';
+            document.getElementById('monthlyRiatisTarget').value = data.monthly_riatis_view_target || '';
+            document.getElementById('monthlyCrmTarget').value = data.monthly_crm_time_target || '';
+        } else {
+            // データが存在しない場合はフォームをクリア
+            clearIndividualGoalForm();
+        }
+    } catch (error) {
+        console.error('Error loading existing goal:', error);
+        // エラーの場合もフォームをクリア
+        clearIndividualGoalForm();
+    }
+}
+
+// 個人目標フォームをクリア
+function clearIndividualGoalForm() {
+    document.getElementById('revenueTarget').value = '';
+    document.getElementById('dailyRiatisTarget').value = '';
+    document.getElementById('dailyCrmTarget').value = '';
+    document.getElementById('monthlyOfferTarget').value = '';
+    document.getElementById('monthlyNegotiationTarget').value = '';
+    document.getElementById('monthlyClosingTarget').value = '';
+    document.getElementById('monthlyRiatisTarget').value = '';
+    document.getElementById('monthlyCrmTarget').value = '';
 }
 
 // 個人目標保存
