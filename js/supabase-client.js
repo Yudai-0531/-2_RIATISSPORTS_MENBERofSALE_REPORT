@@ -92,7 +92,7 @@ class DataService {
     // 今日の名言を取得
     static async getTodayQuote() {
         const dayOfYear = this.getDayOfYear();
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('quotes')
             .select('*')
             .eq('day_of_year', dayOfYear)
@@ -132,7 +132,7 @@ class DataService {
 
     // 個人目標を取得
     static async getIndividualGoal(userId, year, month) {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('individual_goals')
             .select('*')
             .eq('user_id', userId)
@@ -163,7 +163,7 @@ class DataService {
 
     // 日報を取得
     static async getDailyReport(userId, date) {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('daily_reports')
             .select('*')
             .eq('user_id', userId)
@@ -183,7 +183,7 @@ class DataService {
         const endDate = new Date(year, month, 0);
         const endDateStr = `${year}-${String(month).padStart(2, '0')}-${endDate.getDate()}`;
 
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('daily_reports')
             .select('*')
             .eq('user_id', userId)
