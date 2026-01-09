@@ -543,11 +543,12 @@ body.app-page {
 /* Chart Container */
 .chart-container {
     position: relative;
-    height: 300px;
+    height: 350px;
     background: var(--color-black);
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid var(--color-red);
+    padding: 15px 10px 10px 10px;
+    border-radius: 10px;
+    border: 2px solid var(--color-red);
+    box-shadow: 0 0 15px var(--color-red-glow);
 }
 
 /* KPI Summary Section */
@@ -605,7 +606,8 @@ body.app-page {
     }
     
     .chart-container {
-        height: 250px;
+        height: 280px;
+        padding: 12px 8px 8px 8px;
     }
     
     .kpi-cards {

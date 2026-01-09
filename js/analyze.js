@@ -199,7 +199,11 @@ function drawMonthlyChart(cumulativeRevenue, targetRevenue, daysInMonth) {
                     backgroundColor: 'rgba(255, 0, 64, 0.1)',
                     borderWidth: 3,
                     tension: 0.2,
-                    fill: true
+                    fill: true,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#ff0040',
+                    pointBorderColor: '#ff0040',
+                    pointHoverRadius: 6
                 },
                 {
                     label: '目標',
@@ -215,13 +219,28 @@ function drawMonthlyChart(cumulativeRevenue, targetRevenue, daysInMonth) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 10,
+                    right: 15,
+                    bottom: 5,
+                    left: 10
+                }
+            },
             plugins: {
                 legend: {
                     display: true,
+                    position: 'top',
+                    align: 'end',
                     labels: {
                         color: '#ffffff',
-                        font: { size: 12 }
+                        font: { size: 12 },
+                        padding: 15,
+                        usePointStyle: true,
+                        pointStyle: 'rect',
+                        boxWidth: 15,
+                        boxHeight: 10
                     }
                 },
                 tooltip: {
@@ -237,17 +256,30 @@ function drawMonthlyChart(cumulativeRevenue, targetRevenue, daysInMonth) {
             },
             scales: {
                 x: {
-                    ticks: { color: '#999999' },
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    ticks: { 
+                        color: '#999999',
+                        maxRotation: 45,
+                        minRotation: 45,
+                        autoSkip: true,
+                        maxTicksLimit: 8
+                    },
+                    grid: { 
+                        color: 'rgba(255, 255, 255, 0.1)',
+                        drawBorder: true
+                    }
                 },
                 y: {
                     ticks: { 
                         color: '#999999',
                         callback: function(value) {
                             return '¥' + (value / 1000) + 'K';
-                        }
+                        },
+                        padding: 5
                     },
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    grid: { 
+                        color: 'rgba(255, 255, 255, 0.1)',
+                        drawBorder: true
+                    }
                 }
             }
         }
@@ -280,13 +312,28 @@ function drawDailyChart(dailyRevenue, daysInMonth) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 10,
+                    right: 15,
+                    bottom: 5,
+                    left: 10
+                }
+            },
             plugins: {
                 legend: {
                     display: true,
+                    position: 'top',
+                    align: 'end',
                     labels: {
                         color: '#ffffff',
-                        font: { size: 12 }
+                        font: { size: 12 },
+                        padding: 15,
+                        usePointStyle: true,
+                        pointStyle: 'rect',
+                        boxWidth: 15,
+                        boxHeight: 10
                     }
                 },
                 tooltip: {
@@ -302,17 +349,30 @@ function drawDailyChart(dailyRevenue, daysInMonth) {
             },
             scales: {
                 x: {
-                    ticks: { color: '#999999' },
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    ticks: { 
+                        color: '#999999',
+                        maxRotation: 45,
+                        minRotation: 45,
+                        autoSkip: true,
+                        maxTicksLimit: 8
+                    },
+                    grid: { 
+                        color: 'rgba(255, 255, 255, 0.1)',
+                        drawBorder: true
+                    }
                 },
                 y: {
                     ticks: { 
                         color: '#999999',
                         callback: function(value) {
                             return '¥' + (value / 1000) + 'K';
-                        }
+                        },
+                        padding: 5
                     },
-                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    grid: { 
+                        color: 'rgba(255, 255, 255, 0.1)',
+                        drawBorder: true
+                    }
                 }
             }
         }
