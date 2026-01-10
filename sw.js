@@ -1,5 +1,5 @@
 // Service Worker for ONE TEAM PWA
-const CACHE_NAME = 'oneteam-v1';
+const CACHE_NAME = 'oneteam-v2-icons-updated';
 const urlsToCache = [
   '/',
   '/index.html',
