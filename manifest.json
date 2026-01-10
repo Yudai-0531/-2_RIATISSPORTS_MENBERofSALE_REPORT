@@ -9,6 +9,12 @@
   "orientation": "portrait-primary",
   "icons": [
     {
+      "src": "/production-icon-2026.jpg?v=vercel_fix_01",
+      "sizes": "180x180",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
       "src": "/icons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png",
